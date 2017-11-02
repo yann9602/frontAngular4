@@ -13,6 +13,7 @@ export class AppComponent {
  
 
   constructor(private http: HttpClient) {
+    this.ngShowForm();
   }
   title = 'app';
   // Pie
@@ -29,7 +30,7 @@ export class AppComponent {
     this.http.put("https://bankin-ingesup.herokuapp.com/auth/login", ngForm).subscribe(data => {
       this.connectValues = data
       this.getUserTransfer();
-      this.ngShowForm(this.connectValues);
+      this.ngShowForm();
     }
     );
     
@@ -88,9 +89,9 @@ export class AppComponent {
   public chartHovered(e: any): void {
     console.log(e);
   }
-  public ngShowForm(connectValues)
+  public ngShowForm()
   {
-      if (connectValues == null)
+      if (this.connectValues == null)
       {
       return false;
       }

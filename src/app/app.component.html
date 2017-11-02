@@ -1,8 +1,8 @@
-<div class="container" [hidden]="ngShowForm(connectValues)">
+<div class="container" [hidden]="ngShowForm()">
   <div class="col-12">
-    <h1>Connexion</h1>
+    <h1>Enregistrement</h1>
     <br/>
-    <form (ngSubmit)="connect(form.value)" #form="ngForm">
+    <form (ngSubmit)="connect(formSignUp.value)" #formSignUp="ngForm">
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" class="form-control"  value="root" name="username" id="username" [(ngModel)]="username">
@@ -15,10 +15,29 @@
     </form>
   </div>
 </div>
-<div class="container">
+
+<div class="container" [hidden]="ngShowForm()">
+  <div class="col-12">
+    <h1>Connexion</h1>
+    <br/>
+    <form (ngSubmit)="connect(formSignIn.value)" #formSignIn="ngForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control"  value="root" name="username" id="username" [(ngModel)]="username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" value="root" class="form-control" id="password" [(ngModel)]="password">
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+</div>
+
+<div class="container" [hidden]="!ngShowForm()">
   <div class="col-6">
     <h1>Ajouter dépense</h1>
-    <form (ngSubmit)="outMoney(form2.value)" #form2="ngForm">
+    <form (ngSubmit)="outMoney(outForm.value)" #outForm="ngForm">
       <div class="form-group">
         <label for="amount">Montant</label>
         <input type="number"  class="form-control" name="amount" id="amount" [(ngModel)]="amount">
@@ -30,7 +49,7 @@
   </div>
   <h1>Entrer montant</h1>
   <div class="col-6">
-    <form (ngSubmit)="inMoney(form3.value)" #form3="ngForm">
+    <form (ngSubmit)="inMoney(inForm.value)" #inForm="ngForm">
       <div class="form-group">
         <label for="amount">Montant</label>
         <input type="number"  class="form-control" name="amount" id="amount" [(ngModel)]="amount">
@@ -39,13 +58,8 @@
 
     </form>
   </div>
-  <div class="container">
-    <div style="display: block">
-      <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)"></canvas>
-    </div>
-  </div>
-  <div class="container">
+  
+  <div class="container" *ngIf="transferValue!=null">
     <table class="table">
       <thead>
         <tr>
@@ -55,8 +69,8 @@
           <th scope="col">Date</th>
         </tr>
       </thead>
-      <tbody >
-        <tr *ngFor="let transfer of transferValue.transfers">
+      <tbody *ngFor="let transfer of (transferValue.transfers ? transferValue.transfers: [])">
+        <tr >
           <th scope="row"></th>
           <td>{{transfer.sender}}</td>
           <td>{{transfer.amount}}</td>
@@ -65,3 +79,10 @@
       </tbody>
     </table>
   </div>
+  <div class="container" *ngIf="transferValue!=null">
+    <div style="display: block">
+      <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+</div>
