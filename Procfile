@@ -1,1 +1,1 @@
-web: ng serve --port process.env.port
+web: node server.js
