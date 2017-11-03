@@ -1,29 +1,11 @@
 <div class="container" [hidden]="ngShowForm()">
   <div class="col-12">
-    <h1>Enregistrement</h1>
-    <br/>
-    <form (ngSubmit)="connect(formSignUp.value)" #formSignUp="ngForm">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control"  value="root" name="username" id="username" [(ngModel)]="username">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" value="root" class="form-control" id="password" [(ngModel)]="password">
-      </div>
-      <button type="submit" class="btn btn-success">Submit</button>
-    </form>
-  </div>
-</div>
-
-<div class="container" [hidden]="ngShowForm()">
-  <div class="col-12">
     <h1>Connexion</h1>
     <br/>
     <form (ngSubmit)="connect(formSignIn.value)" #formSignIn="ngForm">
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control"  value="root" name="username" id="username" [(ngModel)]="username">
+        <input type="text" class="form-control" value="root" name="username" id="username" [(ngModel)]="username">
       </div>
       <div class="form-group">
         <label for="password">Password</label>
@@ -40,7 +22,7 @@
     <form (ngSubmit)="outMoney(outForm.value)" #outForm="ngForm">
       <div class="form-group">
         <label for="amount">Montant</label>
-        <input type="number"  class="form-control" name="amount" id="amount" [(ngModel)]="amount">
+        <input type="number" class="form-control" name="amount" id="amount" [(ngModel)]="amount">
       </div>
 
       <button type="submit" class="btn btn-success">Submit</button>
@@ -52,37 +34,42 @@
     <form (ngSubmit)="inMoney(inForm.value)" #inForm="ngForm">
       <div class="form-group">
         <label for="amount">Montant</label>
-        <input type="number"  class="form-control" name="amount" id="amount" [(ngModel)]="amount">
+        <input type="number" class="form-control" name="amount" id="amount" [(ngModel)]="amount">
       </div>
       <button type="submit" class="btn btn-success">Submit</button>
 
     </form>
   </div>
-  
-  <div class="container" *ngIf="transferValue!=null">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">From</th>
-          <th scope="col">Amount</th>
-          <th scope="col">Date</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let transfer of (transferValue.transfers ? transferValue.transfers: [])">
-        <tr >
-          <th scope="row"></th>
-          <td>{{transfer.sender}}</td>
-          <td>{{transfer.amount}}</td>
-          <td>{{transfer.transferAt}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="container" *ngIf="transferValue!=null">
-    <div style="display: block">
-      <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)"></canvas>
+</div>
+<div class="container" *ngIf="transferValue!=null">
+  <div class="row">
+    <div class="col-xs-12 col-sm-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">From</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let transfer of (transferValue.transfers ? transferValue.transfers: [])">
+          <tr>
+            <th scope="row"></th>
+            <td>{{transfer.sender}}</td>
+            <td>{{transfer.amount}}</td>
+            <td>{{transfer.transferAt}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xs-12 col-sm-3">
+      <div class="container" *ngIf="transferValue!=null">
+        <div style="display: block">
+          <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
     </div>
   </div>
 </div>
