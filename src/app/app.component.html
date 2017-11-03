@@ -19,7 +19,7 @@
 <div class="container" [hidden]="!ngShowForm()">
   <div class="col-6">
     <h1>Ajouter une entrée/sortie</h1>
-    <form (ngSubmit)="inMoney(outForm.value)" #outForm="ngForm">
+    <form (ngSubmit)="inMoney(inForm.value)" #inForm="ngForm">
       <div class="form-group">
         <label for="amount">Montant</label>
         <input type="number" class="form-control" name="amount" id="amount" ngModel>
