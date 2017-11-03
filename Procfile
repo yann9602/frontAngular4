@@ -1,1 +1,1 @@
-worker ng serve
+web: node_modules/@angular/cli/bin/ng serve

@@ -5,11 +5,11 @@
     <form (ngSubmit)="connect(formSignIn.value)" #formSignIn="ngForm">
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control" value="root" name="username" id="username" [(ngModel)]="username">
+        <input type="text" class="form-control" value="root" name="username" id="username" ngModel>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" name="password" value="root" class="form-control" id="password" [(ngModel)]="password">
+        <input type="password" name="password" value="root" class="form-control" id="password" ngModel>
       </div>
       <button type="submit" class="btn btn-success">Submit</button>
     </form>
@@ -18,23 +18,11 @@
 
 <div class="container" [hidden]="!ngShowForm()">
   <div class="col-6">
-    <h1>Ajouter dépense</h1>
-    <form (ngSubmit)="outMoney(outForm.value)" #outForm="ngForm">
+    <h1>Ajouter une entrée/sortie</h1>
+    <form (ngSubmit)="inMoney(outForm.value)" #outForm="ngForm">
       <div class="form-group">
         <label for="amount">Montant</label>
-        <input type="number" class="form-control" name="amount" id="amount" [(ngModel)]="amount">
-      </div>
-
-      <button type="submit" class="btn btn-success">Submit</button>
-
-    </form>
-  </div>
-  <h1>Entrer montant</h1>
-  <div class="col-6">
-    <form (ngSubmit)="inMoney(inForm.value)" #inForm="ngForm">
-      <div class="form-group">
-        <label for="amount">Montant</label>
-        <input type="number" class="form-control" name="amount" id="amount" [(ngModel)]="amount">
+        <input type="number" class="form-control" name="amount" id="amount" ngModel>
       </div>
       <button type="submit" class="btn btn-success">Submit</button>
 
@@ -58,7 +46,7 @@
             <th scope="row"></th>
             <td>{{transfer.sender}}</td>
             <td>{{transfer.amount}}</td>
-            <td>{{transfer.transferAt}}</td>
+            <td>{{transfer.transferAt  | date }}</td>
           </tr>
         </tbody>
       </table>

@@ -17,7 +17,7 @@ export class AppComponent {
   }
   title = 'app';
   // Pie
-  public pieChartLabels: string[] = ['Revenus', 'Dépenses'];
+  public pieChartLabels: string[] = ['Dépenses', 'Revenus'];
   public pieChartType: string = 'pie';
   public connectValues: any;
   public transferValue: any;
@@ -47,7 +47,7 @@ export class AppComponent {
         let result = Math.abs(element.amount);
         this.outcome = this.outcome + result;
       }
-    this.pieChartData=[this.income,this.outcome];
+    this.pieChartData=[this.outcome,this.income];
     });
   }
   public getUserTransfer() {
@@ -61,17 +61,7 @@ export class AppComponent {
       this.graphDefinition();
     });
   }
-  public outMoney(ngForm)
-  {
-    let amount:object = JSON.parse('{"amount":' + '-' + ngForm.amount +'}');
-    this.http.post("https://bankin-ingesup.herokuapp.com/transfer/" + this.connectValues.user.username,amount,
-    {
-      headers: new HttpHeaders().set('Authorization', this.connectValues.token)
-    }
-  ).subscribe(data => {
-  });
-  this.getUserTransfer();
-  }
+
   public inMoney(ngForm)
   {
     this.http.post("https://bankin-ingesup.herokuapp.com/transfer/" + this.connectValues.user.username,ngForm,
