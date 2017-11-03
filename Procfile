@@ -1,1 +1,1 @@
-web: ng serve --host 0.0.0.0 --port process.env.port
+web: ng serve --port process.env.port
